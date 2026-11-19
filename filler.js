@@ -35,7 +35,6 @@
   ];
   const COMPANIES = ["Acme Corp", "Globex Inc", "Initech", "Umbrella Labs", "Stark Solutions", "Wayne Enterprises", "Hooli", "Vandelay Industries", "Northwind Traders", "Contoso Ltd", "Blue Harbor Co", "Brightpath Digital", "Pinecrest Systems", "Silverline Media", "Redwood Analytics", "Nimbus Cloud", "Ironclad Logistics", "Summit Health", "Lumen Studios", "Quantum Retail", "Evergreen Foods", "Atlas Ventures"];
   const JOBS = ["Software Engineer", "Product Manager", "UX Designer", "Marketing Lead", "Data Analyst", "Sales Executive", "Operations Manager", "QA Engineer", "Accountant", "Consultant", "HR Manager", "DevOps Engineer", "Content Writer", "Business Analyst", "Project Coordinator", "Customer Success Manager", "Graphic Designer", "Financial Analyst", "Frontend Developer", "Teacher", "Nurse", "Architect"];
-  const EMAIL_DOMAINS = ["example.com", "example.net", "example.org", "mail.test", "demo.test", "inbox.test", "sample.dev", "mailbox.test", "testmail.dev", "fakemail.test", "dummy.dev", "nomail.test", "post.test", "letters.test", "webmail.test", "qa.test", "sandbox.test", "staging.test", "devbox.test", "trial.test"];
   const TLDS = ["com", "io", "co", "net", "org", "dev", "app", "tech", "studio", "agency", "biz", "info", "store", "online", "site", "xyz", "cloud", "digital", "media", "solutions"];
   const WORDS = "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip ex ea commodo consequat".split(" ");
   const SUBJECTS = ["Quick question", "Project inquiry", "Partnership opportunity", "Support request", "Feedback on your service", "Booking request", "Pricing information", "Demo request", "Account issue", "Collaboration idea", "Job application", "Order status", "Refund request", "Technical problem", "Feature suggestion", "Media inquiry", "Event invitation", "Quote request", "General enquiry", "Follow-up on our call"];
@@ -96,7 +95,7 @@
     full: `${first} ${last}`,
     middle: fresh("middle", FIRST),
     user,
-    email: `${user}@${fresh("domain", EMAIL_DOMAINS)}`,
+    email: `${user}@example.com`,
     password,
     phone: dial === "+1" ? `(${rnd(201, 989)}) 555-${pad(rnd(100, 9999), 4)}` : `${dial} ${digits(3)} ${digits(3)} ${digits(4)}`,
     company,

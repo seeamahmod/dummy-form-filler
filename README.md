@@ -9,7 +9,7 @@ For each visible, editable field the extension reads its `type`, `name`, `id`, `
 | Field looks like | Filled with |
 | --- | --- |
 | First / last / full name | A consistent fake person (same name everywhere on the page) |
-| Email, username | Derived from that name, on one of 20 dummy domains |
+| Email, username | Derived from that name, always `@example.com` |
 | Password / confirm password | The same test password in both |
 | Phone, address, city, state, postcode, country | A matching address from 24 cities in 15 countries |
 | Company, job title, website | Fake company data |
@@ -21,7 +21,7 @@ For each visible, editable field the extension reads its `type`, `name`, `id`, `
 | Radio groups | One option per group |
 | Checkboxes | Terms/consent boxes ticked, others random |
 
-It also respects `maxlength`, `minlength` and simple `pattern`s, fires `input`/`change` events so React, Vue and Angular forms register the values, fills fields inside open shadow roots and iframes, and skips hidden, disabled and read-only fields. Every click generates a fresh person. Each category (names, streets, cities, companies, jobs, email domains, subjects, test cards and more) has at least 20 entries, and the extension cycles through all of them before repeating one, so values change on every click.
+It also respects `maxlength`, `minlength` and simple `pattern`s, fires `input`/`change` events so React, Vue and Angular forms register the values, fills fields inside open shadow roots and iframes, and skips hidden, disabled and read-only fields. Every click generates a fresh person. Each category (names, streets, cities, companies, jobs, subjects, test cards and more) has at least 20 entries, and the extension cycles through all of them before repeating one, so values change on every click.
 
 The badge on the icon shows how many fields were filled, and a small toast appears on the page.
 
