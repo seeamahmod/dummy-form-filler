@@ -167,9 +167,20 @@
   }
 
   // Ordered: first match wins. Specific rules come before generic ones.
+  // Bank details (dummy values only). Also used for type="number" fields.
+  const letters = (n) => Array.from({ length: n }, () => String.fromCharCode(rnd(65, 90))).join("");
+  const BANK_RULES = [
+    [/iban/, () => `GB${digits(2)} ${letters(4)} ${digits(4)} ${digits(4)} ${digits(4)} ${digits(2)}`],
+    [/swift|\bbic\b/, () => `${letters(4)}${pick(["US", "GB", "DE", "FR", "CA", "AU"])}${letters(2)}`],
+    [/routing|\baba\b|transit ?(number|no)/, () => digits(9)],
+    [/sort ?code|bsb/, () => digits(6)],
+    [/(account|acct|a\/c) ?(number|no|num|#)|bank ?account|account ?no/, () => digits(rnd(10, 12))],
+  ];
+
   const RULES = [
     [/confirm.*(pass|pwd)|(pass|pwd).*(confirm|again|repeat|verify)|re ?type/, () => P.password],
     [/pass(word)?|pwd/, () => P.password],
+    ...BANK_RULES,
     [/e ?mail/, () => P.email],
     [/user ?name|login|nick ?name|handle|user ?id/, () => P.user],
     [/first ?name|given ?name|fname|forename/, () => P.first],
@@ -200,7 +211,7 @@
     [/search|query|keyword/, () => P.search],
     [/otp|verification|pin\b|code/, () => digits(6)],
     [/amount|price|salary|budget|cost/, () => String(rnd(100, 5000))],
-    [/qty|quantity|count|number of/, () => String(rnd(1, 10))],
+    [/qty|quantity|\bcount\b|number of/, () => String(rnd(1, 10))],
   ];
 
   function guessText(hints) {
@@ -218,7 +229,8 @@
     let lo = min ?? 1;
     let hi = max ?? lo + 100;
     if (min == null && max == null) {
-      if (/age/.test(hint)) [lo, hi] = [21, 60];
+      for (const [re, gen] of BANK_RULES) if (re.test(hint)) return gen().replace(/\D/g, "");
+      if (/\bage\b/.test(hint)) [lo, hi] = [21, 60];
       else if (/year/.test(hint)) [lo, hi] = [1980, 2024];
       else if (/zip|postal/.test(hint)) return /^\d+$/.test(P.zip) ? P.zip : digits(5);
       else if (/phone|mobile/.test(hint)) return digits(10);

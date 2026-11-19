@@ -16,6 +16,7 @@ For each visible, editable field the extension reads its `type`, `name`, `id`, `
 | Date of birth, other dates, time, month, week | Valid values, respecting `min`/`max` |
 | Number, range | Within `min`/`max`/`step` |
 | Card number, CVV, expiry | One of 20 public payment test card numbers |
+| Bank account number, routing number, sort code, IBAN, SWIFT/BIC | Random dummy numbers in the right length and format |
 | Message / comment / bio, textareas | Lorem ipsum paragraph |
 | Select | A real option (skips "Select…" placeholders) |
 | Radio groups | One option per group |
